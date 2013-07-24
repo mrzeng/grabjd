@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package grap.table;
+package grabjd.table;
 
-import grap.dto.Link;
+import grabjd.dto.Link;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 

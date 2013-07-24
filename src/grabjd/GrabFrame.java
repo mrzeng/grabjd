@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package grap;
+package grabjd;
 
-import grap.panel.LinkListPanel;
+import grabjd.panel.LinkListPanel;
 import javax.swing.JPanel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,15 +13,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author cz
  */
-public class GrapFrame extends javax.swing.JFrame {
+public class GrabFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form mframe
      */
     private ApplicationContext ctx;
     
-    public GrapFrame() {
-        ctx = new ClassPathXmlApplicationContext("classpath:/grap/SpringXMLConfig.xml");
+    public GrabFrame() {
+        ctx = new ClassPathXmlApplicationContext("classpath:/grabjd/SpringXMLConfig.xml");
         initComponents();
     }
 
@@ -105,20 +105,20 @@ public class GrapFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GrapFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrabFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GrapFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrabFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GrapFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrabFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GrapFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrabFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GrapFrame().setVisible(true);
+                new GrabFrame().setVisible(true);
             }
         });
     }
