@@ -43,5 +43,9 @@ public class LinkService {
    public void saveLink(Link link){
        linkDAO.insertLink(link);
    }
+   
+   public List<Link> getExeLink(){
+      return linkDAO.getLinkByTime(System.currentTimeMillis());
+   }
     
 }

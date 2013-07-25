@@ -19,6 +19,8 @@ public class Link {
     private long period;
     
     private long etime;
+    
+    private int status;
 
     public long getId() {
         return id;
@@ -58,6 +60,14 @@ public class Link {
 
     public void setLinkName(String linkName) {
         this.linkName = linkName;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
     

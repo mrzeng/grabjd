@@ -8,6 +8,8 @@ import grabjd.dto.Link;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -30,8 +32,8 @@ public class LinkDAO {
     
     
     public void insertLink(Link link){
-        String sql = "insert into g_link(link_url,link_name,period,etime) values(?,?,?,?)";
-        Object para[] = new Object[]{link.getLinkUrl(),link.getLinkName(),link.getPeriod(),link.getEtime()};
+        String sql = "insert into g_link(link_url,link_name,period,etime,status) values(?,?,?,?,?)";
+        Object para[] = new Object[]{link.getLinkUrl(),link.getLinkName(),link.getPeriod(),link.getEtime(),link.getStatus()};
         jdbcTemplate.update(sql, para);
     }
     
@@ -45,9 +47,14 @@ public class LinkDAO {
         return jdbcTemplate.queryForObject(sql, new LinkMapper(),new Object[]{id});
     }
     
+    public List<Link> getLinkByTime(long ctime){
+        String sql = "select * from g_link where etime <= ctime";
+        return jdbcTemplate.query(sql, new LinkMapper(),new Object[]{ctime});
+    }
+    
     public void updateLink(Link link){
-        String sql = "update g_link set link_name=?,link_url=?,period=?,etime=? where id=?";
-        jdbcTemplate.update(sql,new Object[]{link.getLinkName(),link.getLinkUrl(),link.getPeriod(),link.getEtime(),link.getId()});
+        String sql = "update g_link set link_name=?,link_url=?,period=?,etime=?,status=? where id=?";
+        jdbcTemplate.update(sql,new Object[]{link.getLinkName(),link.getLinkUrl(),link.getPeriod(),link.getEtime(),link.getStatus(),link.getId()});
     }
 
     private static final class LinkMapper implements RowMapper<Link> {
@@ -61,6 +68,7 @@ public class LinkDAO {
             link.setLinkUrl(rs.getString("link_url"));
             link.setPeriod(rs.getLong("period"));
             link.setEtime(rs.getLong("etime"));
+            link.setStatus(rs.getInt("status"));
             return link;
         }
     }

@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class LinkTableModel extends AbstractTableModel  {
     
-    private String[] columnNames =  new String[]{"链接id","链接名字", "择取链接url", "执行周期"} ;
+    private String[] columnNames =  new String[]{"链接id","链接名字", "择取链接url", "执行周期","状态"} ;
     private List<Link>  data;
 
     public LinkTableModel(List<Link> data) {
@@ -48,6 +48,15 @@ public class LinkTableModel extends AbstractTableModel  {
                 return link.getLinkUrl();
             case 3:
                 return link.getPeriod();
+            case 4:
+                int status = link.getStatus();
+                String rString = "";
+                if(status == 0){
+                    rString="停止";
+                }else if(status ==1){
+                    rString="开始";
+                }
+                return rString;
         }
         return "";
     }
