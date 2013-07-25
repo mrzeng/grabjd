@@ -48,7 +48,7 @@ public class LinkDAO {
     }
     
     public List<Link> getLinkByTime(long ctime){
-        String sql = "select * from g_link where etime <= ctime";
+        String sql = "select * from g_link where status = 1 and etime <= ? ";
         return jdbcTemplate.query(sql, new LinkMapper(),new Object[]{ctime});
     }
     
@@ -56,7 +56,11 @@ public class LinkDAO {
         String sql = "update g_link set link_name=?,link_url=?,period=?,etime=?,status=? where id=?";
         jdbcTemplate.update(sql,new Object[]{link.getLinkName(),link.getLinkUrl(),link.getPeriod(),link.getEtime(),link.getStatus(),link.getId()});
     }
-
+   
+    public void updateLinkeEtime(Link link){
+        String sql = "update g_link set etime=? where id=?";
+        jdbcTemplate.update(sql,new Object[]{link.getEtime() ,link.getId()});
+    }
     private static final class LinkMapper implements RowMapper<Link> {
 
         @Override

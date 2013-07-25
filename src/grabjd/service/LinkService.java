@@ -47,5 +47,9 @@ public class LinkService {
    public List<Link> getExeLink(){
       return linkDAO.getLinkByTime(System.currentTimeMillis());
    }
+   
+   public void updateLinkEtime(Link link){
+       linkDAO.updateLinkeEtime(link);
+   }
     
 }

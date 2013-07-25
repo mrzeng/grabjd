@@ -23,6 +23,8 @@ public class GrabFrame extends javax.swing.JFrame {
     public GrabFrame() {
         ctx = new ClassPathXmlApplicationContext("classpath:/grabjd/SpringXMLConfig.xml");
         initComponents();
+        Thread grabThread = new Thread(new Grab(ctx));
+        grabThread.start();
     }
 
     /**
