@@ -10,6 +10,8 @@ package grabjd.dto;
  */
 public class Goods {
    
+    private long id;
+    
     private String title;
     
     /** 原价  **/
@@ -40,6 +42,14 @@ public class Goods {
 
     public void setDiscountPrice(long discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
    
     
