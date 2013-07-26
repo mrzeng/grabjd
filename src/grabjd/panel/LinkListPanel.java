@@ -111,7 +111,6 @@ public class LinkListPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         AddLinkPanel alPanel = new AddLinkPanel(ctx);
         GrabFrame frame = (GrabFrame) this.getParent().getParent().getParent().getParent();
-        frame.remove(this);
         frame.replacePanle(alPanel);
     }//GEN-LAST:event_addActionPerformed
 
@@ -124,7 +123,6 @@ public class LinkListPanel extends javax.swing.JPanel {
             long id = (Long) dataTable.getModel().getValueAt(selectIndex, 0);
             ModifyLinkPanel mlPanel = new ModifyLinkPanel(ctx, id);
             GrabFrame frame = (GrabFrame) this.getParent().getParent().getParent().getParent();
-            frame.remove(this);
             frame.replacePanle(mlPanel);
         }
 

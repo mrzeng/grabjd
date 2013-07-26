@@ -53,7 +53,7 @@ public class GoodsTableModel extends  AbstractTableModel{
                 if(costPrice % 100 == 0){
                    costPriceStr = costPrice / 100 + ".00"; 
                 }else{
-                   costPriceStr = String.valueOf(costPrice/100) + String.valueOf(costPrice % 100);
+                   costPriceStr = String.valueOf(costPrice/100) + "."+ String.valueOf(costPrice % 100);
                 }
                 return costPriceStr;
             case 3:
@@ -62,7 +62,7 @@ public class GoodsTableModel extends  AbstractTableModel{
                 if(discountPrice % 100 == 0){
                    discountPriceStr = discountPrice / 100 + ".00"; 
                 }else{
-                   discountPriceStr = String.valueOf(discountPrice/100) + String.valueOf(discountPrice % 100);
+                   discountPriceStr = String.valueOf(discountPrice/100) +"."+ String.valueOf(discountPrice % 100);
                 } 
                 return discountPriceStr;
         }

@@ -201,7 +201,6 @@ public class ModifyLinkPanel extends javax.swing.JPanel {
     private void claActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claActionPerformed
         // TODO add your handling code here:
         GrabFrame frame = (GrabFrame) this.getParent().getParent().getParent().getParent();
-        frame.remove(this);
         LinkListPanel llp = new LinkListPanel(ctx);
         frame.replacePanle(llp);
     }//GEN-LAST:event_claActionPerformed

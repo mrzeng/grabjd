@@ -6,6 +6,7 @@ package grabjd;
 
 import grabjd.panel.GoodsListPanel;
 import grabjd.panel.LinkListPanel;
+import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,10 +21,13 @@ public class GrabFrame extends javax.swing.JFrame {
      * Creates new form mframe
      */
     private ApplicationContext ctx;
+    
+    private JPanel tempJpanel;
 
     public GrabFrame() {
         ctx = new ClassPathXmlApplicationContext("classpath:/grabjd/SpringXMLConfig.xml");
         initComponents();
+        this.tempJpanel = mainPanel;
         Thread grabThread = new Thread(new Grab(ctx));
         grabThread.start();
     }
@@ -43,10 +47,15 @@ public class GrabFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("卓越商品抓取软件");
 
         mainPanel.setName(""); // NOI18N
 
+        jMenuBar1.setFont(new java.awt.Font("宋体", 0, 12)); // NOI18N
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(90, 30));
+
         grabLinkMenu.setText("抓取链接");
+        grabLinkMenu.setPreferredSize(new java.awt.Dimension(57, 30));
         grabLinkMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 grabLinkMenuMouseClicked(evt);
@@ -56,6 +65,7 @@ public class GrabFrame extends javax.swing.JFrame {
         grabLinkMenu.getAccessibleContext().setAccessibleName("grapLink");
 
         jMenu1.setText("商品");
+        jMenu1.setPreferredSize(new java.awt.Dimension(33, 30));
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
@@ -73,7 +83,7 @@ public class GrabFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
         );
 
         pack();
@@ -81,28 +91,21 @@ public class GrabFrame extends javax.swing.JFrame {
 
     private void grabLinkMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabLinkMenuMouseClicked
         // TODO add your handling code here:
-        remove(mainPanel);
-        mainPanel = new LinkListPanel(ctx);
-        replacePanle(mainPanel);
+        JPanel rp = new LinkListPanel(ctx);
+        replacePanle(rp);
 
     }//GEN-LAST:event_grabLinkMenuMouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
-        remove(mainPanel);
-        mainPanel = new GoodsListPanel(ctx);
-        replacePanle(mainPanel);
+        JPanel rp = new GoodsListPanel(ctx);
+        replacePanle(rp);
     }//GEN-LAST:event_jMenu1MouseClicked
 
     public void replacePanle(JPanel panel) {
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE));
+        GroupLayout gl = (GroupLayout)getContentPane().getLayout();
+        gl.replace(tempJpanel, panel); 
+        this.tempJpanel = panel;
     }
 
     /**

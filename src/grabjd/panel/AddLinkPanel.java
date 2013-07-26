@@ -9,6 +9,7 @@ import grabjd.dto.Link;
 import grabjd.service.LinkService;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -193,7 +194,6 @@ public class AddLinkPanel extends javax.swing.JPanel {
     private void claActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claActionPerformed
         // TODO add your handling code here:
         GrabFrame frame = (GrabFrame)this.getParent().getParent().getParent().getParent();
-        frame.remove(this);
         LinkListPanel llp = new LinkListPanel(ctx);
         frame.replacePanle(llp);
     }//GEN-LAST:event_claActionPerformed
