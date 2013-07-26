@@ -46,6 +46,16 @@ public class GoodsDAO {
         return null;
     }
     
+    public List<Goods> getGoods(){
+        String sql = "select * from g_goods ";
+        return jdbcTemplate.query(sql,new GoodsMapper());
+    }
+    
+    public List<Goods> getlGoods(String title){
+        String sql = "select * from g_goods where title like " + "'%"+title+"%'";
+        return jdbcTemplate.query(sql,new GoodsMapper());
+    }
+    
     
      private static final class GoodsMapper implements RowMapper<Goods> {
         @Override

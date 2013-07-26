@@ -6,6 +6,7 @@ package grabjd.service;
 
 import grabjd.dao.GoodsDAO;
 import grabjd.dto.Goods;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,13 @@ public class GoodsService {
         return goodsDAO.getGoods(title);
     }
     
+    public List<Goods> getlGoods(String title){
+        return goodsDAO.getlGoods(title);
+    }
+    
+    public List<Goods> getGoods(){
+        return goodsDAO.getGoods();
+    }
     public void updateGoods(Goods goods){
         goodsDAO.updateGoods(goods);
     }

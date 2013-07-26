@@ -10,6 +10,7 @@ import grabjd.service.LinkService;
 import grabjd.table.LinkTableModel;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -56,6 +57,9 @@ public class LinkListPanel extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(dataTable);
+        dataTable.getColumnModel().getColumn(0).setMinWidth(5);
+        dataTable.getColumnModel().getColumn(0).setPreferredWidth(5);
+        dataTable.getColumnModel().getColumn(0).setMaxWidth(5);
 
         add.setText("新增");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -117,8 +121,8 @@ public class LinkListPanel extends javax.swing.JPanel {
         if (selectIndex == -1) {
             JOptionPane.showMessageDialog(this, "请选择删除列");
         } else {
-            long id = (Long)dataTable.getModel().getValueAt(selectIndex, 0);
-            ModifyLinkPanel mlPanel = new ModifyLinkPanel(ctx,id);
+            long id = (Long) dataTable.getModel().getValueAt(selectIndex, 0);
+            ModifyLinkPanel mlPanel = new ModifyLinkPanel(ctx, id);
             GrabFrame frame = (GrabFrame) this.getParent().getParent().getParent().getParent();
             frame.remove(this);
             frame.replacePanle(mlPanel);
@@ -142,8 +146,11 @@ public class LinkListPanel extends javax.swing.JPanel {
     private void loadData() {
         LinkService linkService = ctx.getBean("linkService", LinkService.class);
         List<Link> linkList = linkService.getLink();
-
+        dataTable.setRowHeight(40);
         dataTable.setModel(new LinkTableModel(linkList));
+        dataTable.getColumnModel().getColumn(0).setMinWidth(100);
+        dataTable.getColumnModel().getColumn(0).setMaxWidth(100);
+        dataTable.getColumnModel().getColumn(0).setPreferredWidth(100);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;

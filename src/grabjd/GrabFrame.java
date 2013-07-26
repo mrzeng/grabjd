@@ -4,6 +4,7 @@
  */
 package grabjd;
 
+import grabjd.panel.GoodsListPanel;
 import grabjd.panel.LinkListPanel;
 import javax.swing.JPanel;
 import org.springframework.context.ApplicationContext;
@@ -19,7 +20,7 @@ public class GrabFrame extends javax.swing.JFrame {
      * Creates new form mframe
      */
     private ApplicationContext ctx;
-    
+
     public GrabFrame() {
         ctx = new ClassPathXmlApplicationContext("classpath:/grabjd/SpringXMLConfig.xml");
         initComponents();
@@ -39,6 +40,7 @@ public class GrabFrame extends javax.swing.JFrame {
         mainPanel = new JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         javax.swing.JMenu grabLinkMenu = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +54,14 @@ public class GrabFrame extends javax.swing.JFrame {
         });
         jMenuBar1.add(grabLinkMenu);
         grabLinkMenu.getAccessibleContext().setAccessibleName("grapLink");
+
+        jMenu1.setText("商品");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -77,19 +87,24 @@ public class GrabFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_grabLinkMenuMouseClicked
 
-    public void replacePanle(JPanel panel){
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        remove(mainPanel);
+        mainPanel = new GoodsListPanel(ctx);
+        replacePanle(mainPanel);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    public void replacePanle(JPanel panel) {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE));
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -128,8 +143,8 @@ public class GrabFrame extends javax.swing.JFrame {
     public ApplicationContext getCtx() {
         return ctx;
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
