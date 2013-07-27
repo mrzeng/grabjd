@@ -25,14 +25,22 @@ public class GoodsDAO {
     
     
     public void insertGoods(Goods goods){
-        String sql = "insert into g_goods(title,cost_price,discount_price) values(?,?,?)";
-        Object para[] = new Object[]{goods.getTitle(),goods.getCostprice(),goods.getDiscountPrice()};
+        String sql = "insert into g_goods(title,sales_title,cost_price,seckill_price,discount_price,manual_price,diff_price) "
+                + "values(?,?,?,?,?,?,?)";
+        Object para[] = new Object[]{goods.getTitle(),goods.getSalesTitle(),goods.getCostPrice(),
+            goods.getSeckillPrice(),goods.getDiscountPrice(),goods.getManualPrice(),goods.getDiffPrice()};
         jdbcTemplate.update(sql, para);
     }
     
     public void updateGoods(Goods goods){
-        String sql ="update g_goods set cost_price=? ,discount_price=? where id=?";
-        Object para[] = new Object[]{goods.getCostprice(),goods.getDiscountPrice(),goods.getId()};
+        String sql ="update g_goods set cost_price=?  where id=?";
+        Object para[] = new Object[]{goods.getDiscountPrice(),goods.getId()};
+        jdbcTemplate.update(sql,para);
+    }
+    
+    public void updateAllGoods(Goods goods){
+        String sql = "update g_goods set discount_price=?,manual_price=?,diff_price=? where id=? ";
+        Object para[] = new Object[]{goods.getDiscountPrice(),goods.getManualPrice(),goods.getDiffPrice(),goods.getId()};
         jdbcTemplate.update(sql,para);
     }
     
@@ -45,6 +53,7 @@ public class GoodsDAO {
         }
         return null;
     }
+    
     
     public List<Goods> getGoods(){
         String sql = "select * from g_goods ";
@@ -64,10 +73,17 @@ public class GoodsDAO {
             Goods goods = new Goods();
             goods.setId(rs.getLong("id"));
             goods.setTitle(rs.getString("title"));
-            goods.setCostprice(rs.getLong("cost_price"));
+            goods.setSalesTitle(rs.getString("sales_title"));
+            goods.setCostPrice(rs.getLong("cost_price"));
+            goods.setSeckillPrice(rs.getLong("seckill_price"));
             goods.setDiscountPrice(rs.getLong("discount_price"));
+            goods.setManualPrice(rs.getLong("manual_price"));
+            goods.setDiffPrice(rs.getLong("diff_price"));
             return goods;
         }
     }
+     
+     
+     
     
 }

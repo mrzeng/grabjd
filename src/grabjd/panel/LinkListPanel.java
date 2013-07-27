@@ -10,7 +10,6 @@ import grabjd.service.LinkService;
 import grabjd.table.LinkTableModel;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableColumnModel;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -149,6 +148,7 @@ public class LinkListPanel extends javax.swing.JPanel {
         dataTable.getColumnModel().getColumn(0).setMinWidth(100);
         dataTable.getColumnModel().getColumn(0).setMaxWidth(100);
         dataTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+    
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;

@@ -30,10 +30,10 @@ public class GoodsListPanel extends javax.swing.JPanel {
         GoodsService goodsService = ac.getBean("goodsService", GoodsService.class);
         List<Goods> goodsList = goodsService.getGoods();
         dataTable.setRowHeight(40);
-        dataTable.setModel(new GoodsTableModel(goodsList));
-        dataTable.getColumnModel().getColumn(0).setMinWidth(100);
-        dataTable.getColumnModel().getColumn(0).setMaxWidth(100);
-        dataTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+        GoodsTableModel gtm = new GoodsTableModel(goodsList);
+        dataTable.setModel(gtm);
+        dataTable.getColumnModel().getColumn(0).setPreferredWidth(400);
+        dataTable.getColumnModel().getColumn(1).setPreferredWidth(300);        
     }
     
     /**

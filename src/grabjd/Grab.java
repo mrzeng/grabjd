@@ -40,26 +40,26 @@ public class Grab implements Runnable {
 
                     Document doc = Jsoup.connect(url).get();
                     String title = doc.select("#btAsinTitle").text().trim();
-                    String costPrice = doc.select("#listPriceValue").text().trim();
                     String discountPrice = doc.select(".priceLarge").text().trim();
-                    long cPrice = Long.valueOf(costPrice.split("\\s{1,}")[1].replace(".", "").replace(",", ""));
                     long dPrice = Long.valueOf(discountPrice.split("\\s{1,}")[1].replace(".", "").replace(",", ""));
                     Goods goods = goodsService.getGoods(title);
                     if (goods == null) {
                         goods = new Goods();
                         goods.setTitle(title);
-                        goods.setCostprice(cPrice);
-                        goods.setDiscountPrice(dPrice);
+                        goods.setSalesTitle(title);
+                        goods.setCostPrice(dPrice);
                         goodsService.saveGoods(goods);
                     } else{
-                        goods.setCostprice(cPrice);
-                        goods.setDiscountPrice(dPrice);
+                        goods.setCostPrice(dPrice);
                         goodsService.updateGoods(goods);
                     }
                     link.setEtime(System.currentTimeMillis() + link.getPeriod() * 1000);
                     linkService.updateLinkEtime(link);
 
                 } catch (IOException ex) {
+                    Logger.getLogger(Grab.class.getName()).log(Level.SEVERE, null, ex);
+                    continue;
+                } catch (Exception ex){
                     Logger.getLogger(Grab.class.getName()).log(Level.SEVERE, null, ex);
                     continue;
                 }
