@@ -42,38 +42,38 @@ public class GrabFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        javax.swing.JMenu grabLinkMenu = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        topMainJMenuBar = new javax.swing.JMenuBar();
+        javax.swing.JMenu grabLinkJMenu = new javax.swing.JMenu();
+        goodsJMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("卓越商品抓取软件");
 
         mainPanel.setName(""); // NOI18N
 
-        jMenuBar1.setFont(new java.awt.Font("宋体", 0, 12)); // NOI18N
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(90, 30));
+        topMainJMenuBar.setFont(new java.awt.Font("宋体", 0, 12)); // NOI18N
+        topMainJMenuBar.setPreferredSize(new java.awt.Dimension(90, 30));
 
-        grabLinkMenu.setText("抓取链接");
-        grabLinkMenu.setPreferredSize(new java.awt.Dimension(57, 30));
-        grabLinkMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        grabLinkJMenu.setText("抓取链接");
+        grabLinkJMenu.setPreferredSize(new java.awt.Dimension(57, 30));
+        grabLinkJMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                grabLinkMenuMouseClicked(evt);
+                grabLinkJMenuMouseClicked(evt);
             }
         });
-        jMenuBar1.add(grabLinkMenu);
-        grabLinkMenu.getAccessibleContext().setAccessibleName("grapLink");
+        topMainJMenuBar.add(grabLinkJMenu);
+        grabLinkJMenu.getAccessibleContext().setAccessibleName("grapLink");
 
-        jMenu1.setText("商品");
-        jMenu1.setPreferredSize(new java.awt.Dimension(33, 30));
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        goodsJMenu.setText("商品");
+        goodsJMenu.setPreferredSize(new java.awt.Dimension(33, 30));
+        goodsJMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                goodsJMenuMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        topMainJMenuBar.add(goodsJMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(topMainJMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,18 +89,18 @@ public class GrabFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void grabLinkMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabLinkMenuMouseClicked
+    private void grabLinkJMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabLinkJMenuMouseClicked
         // TODO add your handling code here:
         JPanel rp = new LinkListPanel(ctx);
         replacePanle(rp);
 
-    }//GEN-LAST:event_grabLinkMenuMouseClicked
+    }//GEN-LAST:event_grabLinkJMenuMouseClicked
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void goodsJMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goodsJMenuMouseClicked
         // TODO add your handling code here:
         JPanel rp = new GoodsListPanel(ctx);
         replacePanle(rp);
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_goodsJMenuMouseClicked
 
     public void replacePanle(JPanel panel) {
         GroupLayout gl = (GroupLayout)getContentPane().getLayout();
@@ -147,8 +147,8 @@ public class GrabFrame extends javax.swing.JFrame {
         return ctx;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu goodsJMenu;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuBar topMainJMenuBar;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,72 +38,72 @@ public class ModifyLinkPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        status = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        url = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        period = new javax.swing.JTextField();
+        statusButtonGroup = new javax.swing.ButtonGroup();
+        linkUrlJLabel = new javax.swing.JLabel();
+        linkUrlJTextField = new javax.swing.JTextField();
+        periodJLabel = new javax.swing.JLabel();
+        periodJTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        sub = new javax.swing.JButton();
-        cla = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        linkName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        linkSave = new javax.swing.JButton();
+        linkCla = new javax.swing.JButton();
+        linkNameJLabel = new javax.swing.JLabel();
+        linkNameJTextField = new javax.swing.JTextField();
+        linkStatusJLabel = new javax.swing.JLabel();
+        statusJRadioButtonStart = new javax.swing.JRadioButton();
+        statusJRadioButtonStop = new javax.swing.JRadioButton();
 
-        status.add(jRadioButton1);
-        status.add(jRadioButton2);
+        statusButtonGroup.add(statusJRadioButtonStart);
+        statusButtonGroup.add(statusJRadioButtonStop);
 
-        jLabel1.setText("url地址：");
+        linkUrlJLabel.setText("url地址：");
 
-        url.addActionListener(new java.awt.event.ActionListener() {
+        linkUrlJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                urlActionPerformed(evt);
+                linkUrlJTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("扫描周期：");
+        periodJLabel.setText("扫描周期：");
 
         jLabel3.setText("秒");
 
-        sub.setText("保存");
-        sub.addActionListener(new java.awt.event.ActionListener() {
+        linkSave.setText("保存");
+        linkSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subActionPerformed(evt);
+                linkSaveActionPerformed(evt);
             }
         });
 
-        cla.setText("取消");
-        cla.addActionListener(new java.awt.event.ActionListener() {
+        linkCla.setText("取消");
+        linkCla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                claActionPerformed(evt);
+                linkClaActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("链接名称：");
+        linkNameJLabel.setText("链接名称：");
 
-        linkName.addActionListener(new java.awt.event.ActionListener() {
+        linkNameJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkNameActionPerformed(evt);
+                linkNameJTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("链接状态：");
+        linkStatusJLabel.setText("链接状态：");
 
-        jRadioButton1.setText("启动");
-        jRadioButton1.setActionCommand("1");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        statusJRadioButtonStart.setText("启动");
+        statusJRadioButtonStart.setActionCommand("1");
+        statusJRadioButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                statusJRadioButtonStartActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("停止");
-        jRadioButton2.setActionCommand("0");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        statusJRadioButtonStop.setText("停止");
+        statusJRadioButtonStop.setActionCommand("0");
+        statusJRadioButtonStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                statusJRadioButtonStopActionPerformed(evt);
             }
         });
 
@@ -116,30 +116,30 @@ public class ModifyLinkPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
+                            .addComponent(linkUrlJLabel)
+                            .addComponent(linkNameJLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(linkName, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(linkUrlJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(linkNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                            .addComponent(periodJLabel)
+                            .addComponent(linkStatusJLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(statusJRadioButtonStart)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2))
+                                .addComponent(statusJRadioButtonStop))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(period, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(periodJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(sub)
+                                .addComponent(linkSave)
                                 .addGap(58, 58, 58)
-                                .addComponent(cla)))))
+                                .addComponent(linkCla)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -147,40 +147,40 @@ public class ModifyLinkPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(linkName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(linkNameJLabel)
+                    .addComponent(linkNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(linkUrlJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(linkUrlJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(period, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(periodJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(periodJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(linkStatusJLabel)
+                    .addComponent(statusJRadioButtonStart)
+                    .addComponent(statusJRadioButtonStop))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cla)
-                    .addComponent(sub))
+                    .addComponent(linkCla)
+                    .addComponent(linkSave))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void urlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlActionPerformed
+    private void linkUrlJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkUrlJTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_urlActionPerformed
+    }//GEN-LAST:event_linkUrlJTextFieldActionPerformed
 
-    private void subActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subActionPerformed
+    private void linkSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkSaveActionPerformed
         // TODO add your handling code here:
-        String urlVal = url.getText();
-        String linkNameVal = linkName.getText();
-        long periodVal = Long.valueOf(period.getText());
-        int statusVal = Integer.valueOf(status.getSelection().getActionCommand());
+        String urlVal = linkUrlJTextField.getText();
+        String linkNameVal = linkNameJTextField.getText();
+        long periodVal = Long.valueOf(periodJTextField.getText());
+        int statusVal = Integer.valueOf(statusButtonGroup.getSelection().getActionCommand());
         Date date = new Date();
         Link link = new Link();
         link.setPeriod(periodVal);
@@ -196,54 +196,54 @@ public class ModifyLinkPanel extends javax.swing.JPanel {
         frame.remove(this);
         LinkListPanel llp = new LinkListPanel(ctx);
         frame.replacePanle(llp);
-    }//GEN-LAST:event_subActionPerformed
+    }//GEN-LAST:event_linkSaveActionPerformed
 
-    private void claActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claActionPerformed
+    private void linkClaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkClaActionPerformed
         // TODO add your handling code here:
         GrabFrame frame = (GrabFrame) this.getParent().getParent().getParent().getParent();
         LinkListPanel llp = new LinkListPanel(ctx);
         frame.replacePanle(llp);
-    }//GEN-LAST:event_claActionPerformed
+    }//GEN-LAST:event_linkClaActionPerformed
 
-    private void linkNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkNameActionPerformed
+    private void linkNameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkNameJTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_linkNameActionPerformed
+    }//GEN-LAST:event_linkNameJTextFieldActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void statusJRadioButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusJRadioButtonStartActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_statusJRadioButtonStartActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void statusJRadioButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusJRadioButtonStopActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_statusJRadioButtonStopActionPerformed
 
     private void initLink(long linkId) {
         LinkService linkService = ctx.getBean("linkService", LinkService.class);
         Link link = linkService.getLinkById(linkId);
-        linkName.setText(link.getLinkName());
-        period.setText(String.valueOf(link.getPeriod()));
-        url.setText(link.getLinkUrl());
+        linkNameJTextField.setText(link.getLinkName());
+        periodJTextField.setText(String.valueOf(link.getPeriod()));
+        linkUrlJTextField.setText(link.getLinkUrl());
         int statusVal = link.getStatus();
         if(statusVal == 0){
-           jRadioButton2.setSelected(true); 
+           statusJRadioButtonStop.setSelected(true); 
         }else if(statusVal == 1){
-           jRadioButton1.setSelected(true); 
+           statusJRadioButtonStart.setSelected(true); 
         }
         id = link.getId();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cla;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField linkName;
-    private javax.swing.JTextField period;
-    private javax.swing.ButtonGroup status;
-    private javax.swing.JButton sub;
-    private javax.swing.JTextField url;
+    private javax.swing.JButton linkCla;
+    private javax.swing.JLabel linkNameJLabel;
+    private javax.swing.JTextField linkNameJTextField;
+    private javax.swing.JButton linkSave;
+    private javax.swing.JLabel linkStatusJLabel;
+    private javax.swing.JLabel linkUrlJLabel;
+    private javax.swing.JTextField linkUrlJTextField;
+    private javax.swing.JLabel periodJLabel;
+    private javax.swing.JTextField periodJTextField;
+    private javax.swing.ButtonGroup statusButtonGroup;
+    private javax.swing.JRadioButton statusJRadioButtonStart;
+    private javax.swing.JRadioButton statusJRadioButtonStop;
     // End of variables declaration//GEN-END:variables
 }
