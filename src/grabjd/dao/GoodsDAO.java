@@ -65,6 +65,10 @@ public class GoodsDAO {
         return jdbcTemplate.query(sql,new GoodsMapper());
     }
     
+    public void delGoods(long id){
+        String sql = "delete from g_goods where id = ?";
+        jdbcTemplate.update(sql,new Object[]{id});
+    }
     
      private static final class GoodsMapper implements RowMapper<Goods> {
         @Override

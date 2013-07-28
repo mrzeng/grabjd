@@ -43,4 +43,8 @@ public class GoodsService {
     public void updateGoods(Goods goods){
         goodsDAO.updateGoods(goods);
     }
+    
+    public void delGoods(long id){
+        goodsDAO.delGoods(id);
+    }
 }

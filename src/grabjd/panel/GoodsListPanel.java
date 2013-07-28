@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
-import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -61,6 +61,7 @@ public class GoodsListPanel extends javax.swing.JPanel {
         dicountJLabel = new javax.swing.JLabel();
         discountJTextField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
+        delGoodsjButton = new javax.swing.JButton();
 
         dataTable.setAutoCreateRowSorter(true);
         dataTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,6 +101,13 @@ public class GoodsListPanel extends javax.swing.JPanel {
             }
         });
 
+        delGoodsjButton.setText("删除商品");
+        delGoodsjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delGoodsjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,6 +125,8 @@ public class GoodsListPanel extends javax.swing.JPanel {
                 .addComponent(discountJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(delGoodsjButton)
                 .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
         );
@@ -129,7 +139,8 @@ public class GoodsListPanel extends javax.swing.JPanel {
                     .addComponent(jButton1)
                     .addComponent(dicountJLabel)
                     .addComponent(discountJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveButton))
+                    .addComponent(saveButton)
+                    .addComponent(delGoodsjButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
         );
@@ -161,9 +172,9 @@ public class GoodsListPanel extends javax.swing.JPanel {
                 for (int rowsIndex : selectRowsIndex) {
                     Goods updateGoods = new Goods();
                     String manualPriceStr = (String) goodsTableModel.getValueAt(rowsIndex, 6);
-                    String discountPriceStr = (String) goodsTableModel.getValueAt(rowsIndex, 5);
+                    String discountPriceStr = (String) goodsTableModel.getValueAt(rowsIndex, 3);
                     Long manualPrice = new BigDecimal(manualPriceStr).multiply(new BigDecimal("100")).longValue();
-                    Long discountPrice = new BigDecimal(discountPriceStr).multiply(new BigDecimal(discountText)).longValue();
+                    Long discountPrice = new BigDecimal(discountPriceStr).multiply(new BigDecimal(discountText).multiply(new BigDecimal("100"))).longValue();
                     updateGoods.setId((Long) goodsTableModel.getValueAt(rowsIndex, 0));
                     updateGoods.setDiscountPrice(discountPrice);
                     updateGoods.setManualPrice(manualPrice);
@@ -173,14 +184,33 @@ public class GoodsListPanel extends javax.swing.JPanel {
                 }
                 JOptionPane.showMessageDialog(this, "修改成功!");
                 discountJTextField.setText("");
-                goodsTableModel.fireTableDataChanged();
+                loadData();
             } else {
                 JOptionPane.showMessageDialog(this, "折扣率必须为数字！");
             }
         }
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void delGoodsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delGoodsjButtonActionPerformed
+        // TODO add your handling code here:
+        int[] selectRowsIndex = dataTable.getSelectedRows();
+        if (selectRowsIndex.length == 0) {
+            JOptionPane.showMessageDialog(this, "请选择要删除的商品");
+        } else {
+            for (int rowsIndex : selectRowsIndex) {
+                GoodsTableModel goodsTableModel = (GoodsTableModel) dataTable.getModel();
+                long goodsId = (Long)goodsTableModel.getValueAt(rowsIndex, 0);
+                GoodsService goodsService = ac.getBean("goodsService", GoodsService.class);
+                goodsService.delGoods(goodsId);
+                goodsTableModel.fireTableDataChanged();
+            }
+            JOptionPane.showMessageDialog(this, "删除成功!");
+            loadData();
+        }
+    }//GEN-LAST:event_delGoodsjButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable dataTable;
+    private javax.swing.JButton delGoodsjButton;
     private javax.swing.JLabel dicountJLabel;
     private javax.swing.JTextField discountJTextField;
     private javax.swing.JTextField goodsTitle;

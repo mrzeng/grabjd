@@ -4,6 +4,8 @@
  */
 package grabjd;
 
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import grabjd.dto.Goods;
 import grabjd.dto.Link;
 import grabjd.service.GoodsService;
@@ -51,7 +53,7 @@ public class Grab implements Runnable {
                         Pattern pt = Pattern.compile("\\d+减{1}\\d+");
                         Matcher matcher = pt.matcher(title);
                         while (matcher.find()) {
-                            salesTitle = salesTitle + ","+matcher.group();
+                            salesTitle = salesTitle + "," + matcher.group();
                         }
                     }
                     costPriceStr = doc.select(".priceLarge").text().trim();
