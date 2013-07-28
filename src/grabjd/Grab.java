@@ -9,9 +9,12 @@ import grabjd.dto.Link;
 import grabjd.service.GoodsService;
 import grabjd.service.LinkService;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.context.ApplicationContext;
@@ -36,21 +39,32 @@ public class Grab implements Runnable {
             List<Link> linkList = linkService.getExeLink();
             for (Link link : linkList) {
                 try {
+                    long costPrice = 0L;
+                    long seckillPrice = 0L;
+                    String costPriceStr = "";
+                    String seckillPriceStr = "";
                     String url = link.getLinkUrl().trim();
-
                     Document doc = Jsoup.connect(url).get();
                     String title = doc.select("#btAsinTitle").text().trim();
-                    String discountPrice = doc.select(".priceLarge").text().trim();
-                    long dPrice = Long.valueOf(discountPrice.split("\\s{1,}")[1].replace(".", "").replace(",", ""));
+                    String salesTitle = "";
+                    if (title.indexOf("减") != -1) {
+                        Pattern pt = Pattern.compile("\\d+减{1}\\d+");
+                        Matcher matcher = pt.matcher(title);
+                        while (matcher.find()) {
+                            salesTitle = salesTitle + ","+matcher.group();
+                        }
+                    }
+                    costPriceStr = doc.select(".priceLarge").text().trim();
+                    costPrice = new BigDecimal(costPriceStr.split("\\s{1,}")[1]).multiply(new BigDecimal("100")).longValue();
                     Goods goods = goodsService.getGoods(title);
                     if (goods == null) {
                         goods = new Goods();
                         goods.setTitle(title);
-                        goods.setSalesTitle(title);
-                        goods.setCostPrice(dPrice);
+                        goods.setSalesTitle(salesTitle);
+                        goods.setCostPrice(costPrice);
                         goodsService.saveGoods(goods);
-                    } else{
-                        goods.setCostPrice(dPrice);
+                    } else {
+                        goods.setCostPrice(costPrice);
                         goodsService.updateGoods(goods);
                     }
                     link.setEtime(System.currentTimeMillis() + link.getPeriod() * 1000);
@@ -59,7 +73,7 @@ public class Grab implements Runnable {
                 } catch (IOException ex) {
                     Logger.getLogger(Grab.class.getName()).log(Level.SEVERE, null, ex);
                     continue;
-                } catch (Exception ex){
+                } catch (Exception ex) {
                     Logger.getLogger(Grab.class.getName()).log(Level.SEVERE, null, ex);
                     continue;
                 }

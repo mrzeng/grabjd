@@ -5,6 +5,7 @@
 package grabjd.table;
 
 import grabjd.dto.Goods;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
@@ -16,7 +17,7 @@ import org.apache.commons.lang.math.NumberUtils;
  */
 public class GoodsTableModel extends AbstractTableModel {
 
-    private String[] columnNames = new String[]{"商品名称", "商品优惠", "网站价格", "秒杀价格", "折扣价格", "手动报价", "差价"};
+    private String[] columnNames = new String[]{"商品id","商品名称", "商品优惠", "网站价格", "秒杀价格", "折扣价格", "手动报价", "差价"};
     private List<Goods> data;
 
     public GoodsTableModel(List<Goods> data) {
@@ -43,18 +44,20 @@ public class GoodsTableModel extends AbstractTableModel {
         Goods goods = data.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return goods.getTitle();
+                return goods.getId();
             case 1:
-                return goods.getSalesTitle();
+                return goods.getTitle();
             case 2:
-                return convertPrice(goods.getCostPrice());
+                return goods.getSalesTitle();
             case 3:
-                return convertPrice(goods.getSeckillPrice());
+                return convertPrice(goods.getCostPrice());
             case 4:
-                return convertPrice(goods.getDiscountPrice());
+                return convertPrice(goods.getSeckillPrice());
             case 5:
-                return convertPrice(goods.getManualPrice());
+                return convertPrice(goods.getDiscountPrice());
             case 6:
+                return convertPrice(goods.getManualPrice());
+            case 7:
                 return convertPrice(goods.getDiffPrice());
         }
         return "";
@@ -62,31 +65,18 @@ public class GoodsTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if (columnIndex == 5) {
+        if (columnIndex == 6) {
             return true;
         }
         return false;
     }
 
     public String convertPrice(long price) {
-        String priceStr = "";
-        if (price % 10000 == 0) {
-            priceStr = String.valueOf(price / 10000) + ".00";
-        } else {
-            priceStr = String.valueOf(price / 10000) + "." + String.valueOf(price % 10000).substring(0,2);
-        }
-        return priceStr;
+       return new BigDecimal(String.valueOf(price)).divide(new BigDecimal("100")).toString();
     }
     
     public long convertPrice(String sprice){
-      Long lsprice = 0L;
-      String sprices[] =  sprice.split("\\.");
-      if(sprices.length == 2){
-          lsprice = Long.valueOf(sprices[0] + sprices[1]) * 100;
-      }else{
-           lsprice = Long.valueOf(sprice)* 100;
-      }
-      return lsprice;
+       return new BigDecimal(sprice).multiply(new BigDecimal("100")).longValue();
     }
 
     public void setData(List<Goods> data) {
@@ -98,7 +88,7 @@ public class GoodsTableModel extends AbstractTableModel {
         if (NumberUtils.isNumber(String.valueOf(aValue))) {
             Goods goods = data.get(rowIndex);
             switch (columnIndex) {
-                case 5:
+                case 6:
                     goods.setManualPrice(convertPrice(aValue.toString()));
             }
             fireTableCellUpdated(rowIndex, columnIndex);

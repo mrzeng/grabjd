@@ -33,6 +33,10 @@ public class GoodsService {
         return goodsDAO.getlGoods(title);
     }
     
+    public void updateAllGoods(Goods goods){
+         goodsDAO.updateAllGoods(goods);
+    }
+    
     public List<Goods> getGoods(){
         return goodsDAO.getGoods();
     }

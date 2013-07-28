@@ -92,5 +92,10 @@ public class Goods {
     public void setSalesTitle(String salesTitle) {
         this.salesTitle = salesTitle;
     }
+
+    @Override
+    public String toString() {
+        return "Goods{" + "id=" + id + ", title=" + title + ", salesTitle=" + salesTitle + ", costPrice=" + costPrice + ", seckillPrice=" + seckillPrice + ", discountPrice=" + discountPrice + ", manualPrice=" + manualPrice + ", diffPrice=" + diffPrice + '}';
+    }
      
 }
