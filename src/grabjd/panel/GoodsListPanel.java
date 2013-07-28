@@ -7,6 +7,7 @@ package grabjd.panel;
 import grabjd.dto.Goods;
 import grabjd.service.GoodsService;
 import grabjd.table.GoodsTableModel;
+import grabjd.table.IconTableCellRenderer;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -43,6 +44,7 @@ public class GoodsListPanel extends javax.swing.JPanel {
         tableColumnId.setPreferredWidth(0);
         dataTable.getColumnModel().getColumn(1).setPreferredWidth(400);
         dataTable.getColumnModel().getColumn(2).setPreferredWidth(300);
+        dataTable.getColumnModel().getColumn(8).setCellRenderer(new IconTableCellRenderer());
     }
 
     /**

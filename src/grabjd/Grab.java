@@ -4,12 +4,12 @@
  */
 package grabjd;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import grabjd.dto.Goods;
 import grabjd.dto.Link;
 import grabjd.service.GoodsService;
 import grabjd.service.LinkService;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.context.ApplicationContext;
+import sun.audio.AudioPlayer;
 
 /**
  *
@@ -68,6 +69,11 @@ public class Grab implements Runnable {
                     } else {
                         goods.setCostPrice(costPrice);
                         goodsService.updateGoods(goods);
+                        if (goods.getDiffPrice() > 0) {
+                            String audioFile = System.getProperty("user.dir") + "/src/com/sound/msg.wav";
+                            FileInputStream inputStream = new FileInputStream(new File(audioFile));
+                            AudioPlayer.player.start(inputStream);
+                        }
                     }
                     link.setEtime(System.currentTimeMillis() + link.getPeriod() * 1000);
                     linkService.updateLinkEtime(link);
