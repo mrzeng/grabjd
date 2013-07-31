@@ -34,7 +34,7 @@ public class GoodsDAO {
     
     public void updateGoods(Goods goods){
         String sql ="update g_goods set cost_price=?  where id=?";
-        Object para[] = new Object[]{goods.getDiscountPrice(),goods.getId()};
+        Object para[] = new Object[]{goods.getCostPrice(),goods.getId()};
         jdbcTemplate.update(sql,para);
     }
     

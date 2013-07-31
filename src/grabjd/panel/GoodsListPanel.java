@@ -174,9 +174,9 @@ public class GoodsListPanel extends javax.swing.JPanel {
                 for (int rowsIndex : selectRowsIndex) {
                     Goods updateGoods = new Goods();
                     String manualPriceStr = (String) goodsTableModel.getValueAt(rowsIndex, 6);
-                    String discountPriceStr = (String) goodsTableModel.getValueAt(rowsIndex, 3);
+                    String costPriceStr = (String) goodsTableModel.getValueAt(rowsIndex, 3);
                     Long manualPrice = new BigDecimal(manualPriceStr).multiply(new BigDecimal("100")).longValue();
-                    Long discountPrice = new BigDecimal(discountPriceStr).multiply(new BigDecimal(discountText).multiply(new BigDecimal("100"))).longValue();
+                    Long discountPrice = new BigDecimal(costPriceStr).multiply(new BigDecimal(discountText).multiply(new BigDecimal("100"))).longValue();
                     updateGoods.setId((Long) goodsTableModel.getValueAt(rowsIndex, 0));
                     updateGoods.setDiscountPrice(discountPrice);
                     updateGoods.setManualPrice(manualPrice);

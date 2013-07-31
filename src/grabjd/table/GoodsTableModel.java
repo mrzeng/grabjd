@@ -59,6 +59,7 @@ public class GoodsTableModel extends AbstractTableModel {
                 return convertPrice(goods.getManualPrice());
             case 7:
                 return convertPrice(goods.getDiffPrice());
+
         }
         return "";
     }
