@@ -67,8 +67,10 @@ public class Grab implements Runnable {
                         goods.setCostPrice(costPrice);
                         goodsService.saveGoods(goods);
                     } else {
+                        long discount_price = new BigDecimal(costPrice).multiply(new BigDecimal(goods.getDiscountRate())).divide(new BigDecimal("100")).longValue();
                         goods.setCostPrice(costPrice);
-                        System.out.println("xxx"+goods);
+                        goods.setDiscountPrice(discount_price);
+                        goods.setDiffPrice(goods.getManualPrice() - discount_price);
                         goodsService.updateGoods(goods);
                         if (goods.getDiffPrice() > 0) {
                             String audioFile = System.getProperty("user.dir") + "/src/grabjd/sound/msg.wav";

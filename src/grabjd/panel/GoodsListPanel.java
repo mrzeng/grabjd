@@ -90,12 +90,6 @@ public class GoodsListPanel extends javax.swing.JPanel {
 
         dicountJLabel.setText("折扣率：");
 
-        discountJTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                discountJTextFieldActionPerformed(evt);
-            }
-        });
-
         saveButton.setText("保存");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,10 +152,6 @@ public class GoodsListPanel extends javax.swing.JPanel {
         GoodsTableModel.fireTableDataChanged();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void discountJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountJTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_discountJTextFieldActionPerformed
-
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
         String discountText = discountJTextField.getText();
@@ -181,6 +171,7 @@ public class GoodsListPanel extends javax.swing.JPanel {
                     updateGoods.setDiscountPrice(discountPrice);
                     updateGoods.setManualPrice(manualPrice);
                     updateGoods.setDiffPrice(manualPrice - discountPrice);
+                    updateGoods.setDiscountRate(new BigDecimal(discountText).multiply(new BigDecimal("100")).longValue());
                     GoodsService goodsService = ac.getBean("goodsService", GoodsService.class);
                     goodsService.updateAllGoods(updateGoods);
                 }

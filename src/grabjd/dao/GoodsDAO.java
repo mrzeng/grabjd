@@ -33,14 +33,14 @@ public class GoodsDAO {
     }
     
     public void updateGoods(Goods goods){
-        String sql ="update g_goods set cost_price=?  where id=?";
-        Object para[] = new Object[]{goods.getCostPrice(),goods.getId()};
+        String sql ="update g_goods set cost_price=?,discount_price=?,diff_price=? where id=?";
+        Object para[] = new Object[]{goods.getCostPrice(),goods.getDiscountPrice(),goods.getDiffPrice(),goods.getId()};
         jdbcTemplate.update(sql,para);
     }
     
     public void updateAllGoods(Goods goods){
-        String sql = "update g_goods set discount_price=?,manual_price=?,diff_price=? where id=? ";
-        Object para[] = new Object[]{goods.getDiscountPrice(),goods.getManualPrice(),goods.getDiffPrice(),goods.getId()};
+        String sql = "update g_goods set discount_price=?,manual_price=?,diff_price=?,discount_rate=? where id=? ";
+        Object para[] = new Object[]{goods.getDiscountPrice(),goods.getManualPrice(),goods.getDiffPrice(),goods.getDiscountRate(),goods.getId()};
         jdbcTemplate.update(sql,para);
     }
     
@@ -83,6 +83,7 @@ public class GoodsDAO {
             goods.setDiscountPrice(rs.getLong("discount_price"));
             goods.setManualPrice(rs.getLong("manual_price"));
             goods.setDiffPrice(rs.getLong("diff_price"));
+            goods.setDiscountRate(rs.getLong("discount_rate"));
             return goods;
         }
     }

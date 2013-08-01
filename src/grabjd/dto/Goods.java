@@ -28,6 +28,8 @@ public class Goods {
     private long manualPrice;
     
     private long diffPrice;
+    
+    private long discountRate;
 
     public long getId() {
         return id;
@@ -93,6 +95,14 @@ public class Goods {
         this.salesTitle = salesTitle;
     }
 
+    public long getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(long discountRate) {
+        this.discountRate = discountRate;
+    }
+    
     @Override
     public String toString() {
         return "Goods{" + "id=" + id + ", title=" + title + ", salesTitle=" + salesTitle + ", costPrice=" + costPrice + ", seckillPrice=" + seckillPrice + ", discountPrice=" + discountPrice + ", manualPrice=" + manualPrice + ", diffPrice=" + diffPrice + '}';

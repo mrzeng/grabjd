@@ -10,6 +10,7 @@ import grabjd.service.LinkService;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -174,7 +175,12 @@ public class AddLinkPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String urlVal = linkUrlJTextField.getText();
         String linkNameVal = linkNameJTextField.getText();
-        long periodVal = Long.valueOf(periodJTextField.getText());
+        String periodJTextFieldVal = periodJTextField.getText();
+        if(!NumberUtils.isDigits(periodJTextFieldVal)){
+            JOptionPane.showMessageDialog(this, "扫描周期必须为整数");
+            return;
+        }
+        long periodVal = Long.valueOf(periodJTextFieldVal);
         int statusVal = Integer.valueOf(LinkStatusButtonGroup.getSelection().getActionCommand());
         Date date = new Date();
         Link link = new Link();
