@@ -8,8 +8,6 @@ import grabjd.dto.Goods;
 import grabjd.dto.Link;
 import grabjd.service.GoodsService;
 import grabjd.service.LinkService;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -57,9 +55,14 @@ public class Grab implements Runnable {
                             salesTitle = salesTitle + "," + matcher.group();
                         }
                     }
-                    costPriceStr = doc.select(".priceLarge").text().trim();
-                    costPriceStr = costPriceStr.split("\\s{1,}")[1].replaceAll(",", "");
-                    costPrice = new BigDecimal(costPriceStr).multiply(new BigDecimal("100")).longValue();
+                    String deliver = doc.select(".buying > b").text();
+                    if(!"亚马逊".equals(deliver)){
+                        costPrice = 0;
+                    }else{
+                        costPriceStr = doc.select(".priceLarge").text().trim();
+                        costPriceStr = costPriceStr.split("\\s{1,}")[1].replaceAll(",", "");
+                        costPrice = new BigDecimal(costPriceStr).multiply(new BigDecimal("100")).longValue();
+                    }  
                     Goods goods = goodsService.getGoods(title);
                     if (goods == null) {
                         goods = new Goods();
