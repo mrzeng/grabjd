@@ -25,8 +25,7 @@ public class IconTableCellRenderer extends DefaultTableCellRenderer{
             String diffPriceStr = (String) goodsTableModle.getValueAt(row, 7);
             long diffPrice = new BigDecimal(diffPriceStr).longValue();
             if (diffPrice > 0) {
-                String imgUrl = System.getProperty("user.dir") + "/src/grabjd/sound/icn_best.gif";
-                ImageIcon icon = new ImageIcon(imgUrl);
+                ImageIcon icon = new ImageIcon(this.getClass().getResource("/grabjd/sound/icn_best.gif"));
                 JLabel label = new JLabel(icon);
                 label.setOpaque(false);
                 return label;
