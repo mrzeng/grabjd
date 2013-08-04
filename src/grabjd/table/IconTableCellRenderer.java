@@ -9,13 +9,14 @@ import java.math.BigDecimal;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
 /**
  *
  * @author cz
  */
-public class IconTableCellRenderer implements TableCellRenderer {
+public class IconTableCellRenderer extends DefaultTableCellRenderer{
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -31,6 +32,6 @@ public class IconTableCellRenderer implements TableCellRenderer {
                 return label;
             }
         }
-        return new JLabel(" ");
+        return this;
     }
 }

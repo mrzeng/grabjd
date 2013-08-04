@@ -58,7 +58,8 @@ public class Grab implements Runnable {
                         }
                     }
                     costPriceStr = doc.select(".priceLarge").text().trim();
-                    costPrice = new BigDecimal(costPriceStr.split("\\s{1,}")[1]).multiply(new BigDecimal("100")).longValue();
+                    costPriceStr = costPriceStr.split("\\s{1,}")[1].replaceAll(",", "");
+                    costPrice = new BigDecimal(costPriceStr).multiply(new BigDecimal("100")).longValue();
                     Goods goods = goodsService.getGoods(title);
                     if (goods == null) {
                         goods = new Goods();
