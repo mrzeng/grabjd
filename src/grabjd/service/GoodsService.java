@@ -44,6 +44,10 @@ public class GoodsService {
         goodsDAO.updateGoods(goods);
     }
     
+    public void updateGoodsManualPrice(Goods goods){
+        goodsDAO.updateGoodsManualPrice(goods);
+    }
+    
     public void delGoods(long id){
         goodsDAO.delGoods(id);
     }

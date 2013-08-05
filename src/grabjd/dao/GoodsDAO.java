@@ -25,17 +25,22 @@ public class GoodsDAO {
     
     
     public void insertGoods(Goods goods){
-        String sql = "insert into g_goods(title,sales_title,cost_price,seckill_price,discount_price,manual_price,diff_price) "
-                + "values(?,?,?,?,?,?,?)";
+        String sql = "insert into g_goods(title,sales_title,cost_price,seckill_price,discount_price,manual_price,diff_price,link_url) "
+                + "values(?,?,?,?,?,?,?,?)";
         Object para[] = new Object[]{goods.getTitle(),goods.getSalesTitle(),goods.getCostPrice(),
-            goods.getSeckillPrice(),goods.getDiscountPrice(),goods.getManualPrice(),goods.getDiffPrice()};
+            goods.getSeckillPrice(),goods.getDiscountPrice(),goods.getManualPrice(),goods.getDiffPrice(),goods.getLink()};
         jdbcTemplate.update(sql, para);
     }
     
     public void updateGoods(Goods goods){
-        String sql ="update g_goods set cost_price=?,discount_price=?,diff_price=? where id=?";
-        Object para[] = new Object[]{goods.getCostPrice(),goods.getDiscountPrice(),goods.getDiffPrice(),goods.getId()};
+        String sql ="update g_goods set cost_price=?,discount_price=?,diff_price=?,link_url=? where id=?";
+        Object para[] = new Object[]{goods.getCostPrice(),goods.getDiscountPrice(),goods.getDiffPrice(),goods.getLink(),goods.getId()};
         jdbcTemplate.update(sql,para);
+    }
+    
+    public void updateGoodsManualPrice(Goods goods){
+        String sql = "update g_goods set manual_price = ? where id=?";
+        jdbcTemplate.update(sql,new Object[]{goods.getManualPrice(),goods.getId()});
     }
     
     public void updateAllGoods(Goods goods){
@@ -56,7 +61,7 @@ public class GoodsDAO {
     
     
     public List<Goods> getGoods(){
-        String sql = "select * from g_goods ";
+        String sql = "select * from g_goods";
         return jdbcTemplate.query(sql,new GoodsMapper());
     }
     
@@ -84,6 +89,7 @@ public class GoodsDAO {
             goods.setManualPrice(rs.getLong("manual_price"));
             goods.setDiffPrice(rs.getLong("diff_price"));
             goods.setDiscountRate(rs.getLong("discount_rate"));
+            goods.setLink(rs.getString("link_url"));
             return goods;
         }
     }

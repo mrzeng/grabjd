@@ -30,6 +30,8 @@ public class Goods {
     private long diffPrice;
     
     private long discountRate;
+    
+    private String link;
 
     public long getId() {
         return id;
@@ -101,6 +103,14 @@ public class Goods {
 
     public void setDiscountRate(long discountRate) {
         this.discountRate = discountRate;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
     
     @Override

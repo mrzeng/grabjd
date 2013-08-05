@@ -8,10 +8,19 @@ import grabjd.dto.Goods;
 import grabjd.service.GoodsService;
 import grabjd.table.GoodsTableModel;
 import grabjd.table.IconTableCellRenderer;
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.context.ApplicationContext;
 
@@ -45,6 +54,24 @@ public class GoodsListPanel extends javax.swing.JPanel {
         dataTable.getColumnModel().getColumn(1).setPreferredWidth(400);
         dataTable.getColumnModel().getColumn(2).setPreferredWidth(300);
         dataTable.getColumnModel().getColumn(8).setCellRenderer(new IconTableCellRenderer());
+        dataTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if(e.getClickCount() == 2){
+                    int clickRow = dataTable.rowAtPoint(e.getPoint());
+                    GoodsTableModel goodsTableModel =(GoodsTableModel)dataTable.getModel();
+                    String link = goodsTableModel.getData().get(clickRow).getLink();
+                    Desktop desktop = Desktop.getDesktop();
+                    try {
+                         desktop.browse(new URI(link));  
+                    } catch (URISyntaxException | IOException ex) {
+                        Logger.getLogger(GoodsListPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                 
+                }
+            }
+        });
     }
 
     /**
@@ -166,6 +193,7 @@ public class GoodsListPanel extends javax.swing.JPanel {
         if (selectRowsIndex.length == 0) {
             JOptionPane.showMessageDialog(this, "请选择要更新的数据!");
         } else {
+            GoodsService goodsService = ac.getBean("goodsService", GoodsService.class);
             if (NumberUtils.isNumber(discountText)) {
                 GoodsTableModel goodsTableModel = (GoodsTableModel) dataTable.getModel();
                 for (int rowsIndex : selectRowsIndex) {
@@ -179,8 +207,20 @@ public class GoodsListPanel extends javax.swing.JPanel {
                     updateGoods.setManualPrice(manualPrice);
                     updateGoods.setDiffPrice(manualPrice - discountPrice);
                     updateGoods.setDiscountRate(new BigDecimal(discountText).multiply(new BigDecimal("100")).longValue());
-                    GoodsService goodsService = ac.getBean("goodsService", GoodsService.class);
                     goodsService.updateAllGoods(updateGoods);
+                }
+                JOptionPane.showMessageDialog(this, "修改成功!");
+                discountJTextField.setText("");
+                loadData();
+            } else if (StringUtils.isEmpty(discountText)) {
+                GoodsTableModel goodsTableModel = (GoodsTableModel) dataTable.getModel();
+                for (int rowsIndex : selectRowsIndex) {
+                    Goods updateGoods = new Goods();
+                    String manualPriceStr = (String) goodsTableModel.getValueAt(rowsIndex, 6);
+                    Long manualPrice = new BigDecimal(manualPriceStr).multiply(new BigDecimal("100")).longValue();
+                    updateGoods.setId((Long) goodsTableModel.getValueAt(rowsIndex, 0));
+                    updateGoods.setManualPrice(manualPrice);
+                    goodsService.updateGoodsManualPrice(updateGoods);      
                 }
                 JOptionPane.showMessageDialog(this, "修改成功!");
                 discountJTextField.setText("");
@@ -199,7 +239,7 @@ public class GoodsListPanel extends javax.swing.JPanel {
         } else {
             for (int rowsIndex : selectRowsIndex) {
                 GoodsTableModel goodsTableModel = (GoodsTableModel) dataTable.getModel();
-                long goodsId = (Long)goodsTableModel.getValueAt(rowsIndex, 0);
+                long goodsId = (Long) goodsTableModel.getValueAt(rowsIndex, 0);
                 GoodsService goodsService = ac.getBean("goodsService", GoodsService.class);
                 goodsService.delGoods(goodsId);
                 goodsTableModel.fireTableDataChanged();

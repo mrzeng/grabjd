@@ -45,7 +45,7 @@ public class Grab implements Runnable {
                     String costPriceStr = "";
                     String seckillPriceStr = "";
                     String url = link.getLinkUrl().trim();
-                    Document doc = Jsoup.connect(url).get();
+                    Document doc = Jsoup.connect(url).timeout(1000*30).get();
                     String title = doc.select("#btAsinTitle").text().trim();
                     String salesTitle = "";
                     if (title.indexOf("减") != -1) {
@@ -69,12 +69,14 @@ public class Grab implements Runnable {
                         goods.setTitle(title);
                         goods.setSalesTitle(salesTitle);
                         goods.setCostPrice(costPrice);
+                        goods.setLink(url);
                         goodsService.saveGoods(goods);
                     } else {
                         long discount_price = new BigDecimal(costPrice).multiply(new BigDecimal(goods.getDiscountRate())).divide(new BigDecimal("100")).longValue();
                         goods.setCostPrice(costPrice);
                         goods.setDiscountPrice(discount_price);
                         goods.setDiffPrice(goods.getManualPrice() - discount_price);
+                        goods.setLink(url);
                         goodsService.updateGoods(goods);
                         if (goods.getDiffPrice() > 0) {
                             AudioPlayer.player.start(this.getClass().getResourceAsStream("/grabjd/sound/msg.wav"));
