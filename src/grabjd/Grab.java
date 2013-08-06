@@ -8,6 +8,7 @@ import grabjd.dto.Goods;
 import grabjd.dto.Link;
 import grabjd.service.GoodsService;
 import grabjd.service.LinkService;
+import grabjd.util.CacheUtil;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -78,7 +79,7 @@ public class Grab implements Runnable {
                         goods.setDiffPrice(goods.getManualPrice() - discount_price);
                         goods.setLink(url);
                         goodsService.updateGoods(goods);
-                        if (goods.getDiffPrice() > 0) {
+                        if (goods.getDiffPrice() > 0 &&  CacheUtil.getCacheMap().get("setting")) {
                             AudioPlayer.player.start(this.getClass().getResourceAsStream("/grabjd/sound/msg.wav"));
                         }
                     }

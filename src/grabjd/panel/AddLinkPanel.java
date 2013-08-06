@@ -9,7 +9,6 @@ import grabjd.dto.Link;
 import grabjd.service.LinkService;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.context.ApplicationContext;
 

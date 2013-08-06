@@ -41,6 +41,14 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="goodsJMenuMouseClicked"/>
           </Events>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="SettingJMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x8bbe;&#x5b9a;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SettingJMenuMouseClicked"/>
+          </Events>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

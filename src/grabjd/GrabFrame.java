@@ -6,6 +6,7 @@ package grabjd;
 
 import grabjd.panel.GoodsListPanel;
 import grabjd.panel.LinkListPanel;
+import grabjd.panel.SettingJPanel;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import org.springframework.context.ApplicationContext;
@@ -43,6 +44,7 @@ public class GrabFrame extends javax.swing.JFrame {
         topMainJMenuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu grabLinkJMenu = new javax.swing.JMenu();
         goodsJMenu = new javax.swing.JMenu();
+        SettingJMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("卓越商品抓取软件");
@@ -71,6 +73,14 @@ public class GrabFrame extends javax.swing.JFrame {
         });
         topMainJMenuBar.add(goodsJMenu);
 
+        SettingJMenu.setText("设定");
+        SettingJMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SettingJMenuMouseClicked(evt);
+            }
+        });
+        topMainJMenuBar.add(SettingJMenu);
+
         setJMenuBar(topMainJMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,6 +108,12 @@ public class GrabFrame extends javax.swing.JFrame {
         JPanel rp = new LinkListPanel(ctx);
         replacePanle(rp);
     }//GEN-LAST:event_grabLinkJMenuMouseClicked
+
+    private void SettingJMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingJMenuMouseClicked
+        // TODO add your handling code here:
+        JPanel settingPanle = new SettingJPanel();
+        replacePanle(settingPanle);
+    }//GEN-LAST:event_SettingJMenuMouseClicked
 
     public void replacePanle(JPanel panel) {
         GroupLayout gl = (GroupLayout) getContentPane().getLayout();
@@ -144,6 +160,7 @@ public class GrabFrame extends javax.swing.JFrame {
         return ctx;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu SettingJMenu;
     private javax.swing.JMenu goodsJMenu;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar topMainJMenuBar;
