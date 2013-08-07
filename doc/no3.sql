@@ -35,10 +35,11 @@ CREATE TABLE IF NOT EXISTS `g_goods` (
   `discount_price` bigint(20) NOT NULL DEFAULT '0',
   `manual_price` bigint(20) NOT NULL DEFAULT '0',
   `diff_price` bigint(20) NOT NULL DEFAULT '0',
+  `discount_rate`  bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `title` (`title`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 转存表中的数据 `g_goods`
@@ -56,13 +57,13 @@ INSERT INTO `g_goods` (`id`, `title`, `sales_title`, `cost_price`, `seckill_pric
 CREATE TABLE IF NOT EXISTS `g_link` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `link_name` varchar(200) NOT NULL,
-  `link_url` varchar(2000) NOT NULL,
+  `link_url` varchar(1000) NOT NULL,
   `period` bigint(20) NOT NULL,
   `etime` bigint(20) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `link_name` (`link_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 转存表中的数据 `g_link`
