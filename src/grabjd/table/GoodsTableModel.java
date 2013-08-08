@@ -51,6 +51,9 @@ public class GoodsTableModel extends AbstractTableModel {
                 return goods.getSalesTitle();
             case 3:
                 String costPrice = convertPrice(goods.getCostPrice());
+                if("0".equals(costPrice)){
+                    return "无货";
+                }
                 return costPrice ;
             case 4:
                 return convertPrice(goods.getSeckillPrice());

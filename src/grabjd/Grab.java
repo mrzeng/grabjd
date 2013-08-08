@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.context.ApplicationContext;
@@ -60,7 +61,12 @@ public class Grab implements Runnable {
                     costPriceStr = doc.select(".priceLarge").text().trim();
                     costPriceStr = costPriceStr.split("\\s{1,}")[1].replaceAll(",", "");
                     costPrice = new BigDecimal(costPriceStr).multiply(new BigDecimal("100")).longValue();
-
+                     
+                    String deliver = doc.select("#BBAvailPlusMerchID > div > b").text();
+                    if(StringUtils.isNotEmpty(deliver)&&deliver.indexOf("亚马逊") == -1){
+                        costPrice = 0;
+                    }
+                    
                     Goods goods = goodsService.getGoods(title);
                     if (goods == null) {
                         goods = new Goods();
