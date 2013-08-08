@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -23,8 +22,9 @@ public class IconTableCellRenderer extends DefaultTableCellRenderer{
         if (column == 8) {
             GoodsTableModel goodsTableModle = (GoodsTableModel) table.getModel();
             String diffPriceStr = (String) goodsTableModle.getValueAt(row, 7);
+            String costPriceStr = (String) goodsTableModle.getValueAt(row, 3);
             long diffPrice = new BigDecimal(diffPriceStr).longValue();
-            if (diffPrice > 0) {
+            if (diffPrice > 0 && !"无价".equals(costPriceStr)) {
                 ImageIcon icon = new ImageIcon(this.getClass().getResource("/grabjd/sound/icn_best.gif"));
                 JLabel label = new JLabel(icon);
                 label.setOpaque(false);

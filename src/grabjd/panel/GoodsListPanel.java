@@ -15,11 +15,14 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.context.ApplicationContext;
@@ -46,7 +49,25 @@ public class GoodsListPanel extends javax.swing.JPanel {
         List<Goods> goodsList = goodsService.getGoods();
         dataTable.setRowHeight(40);
         GoodsTableModel gtm = new GoodsTableModel(goodsList);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(gtm);
+        Comparator<String> comparator = new Comparator<String>(){
+            @Override
+            public int compare(String o1, String o2) {
+                long olLong =  new BigDecimal(o1).longValue();
+                long o2Long =  new BigDecimal(o2).longValue();
+                if(olLong > o2Long){
+                    return 1;
+                }else if(olLong < o2Long) {
+                    return -1;
+                }else{
+                    return 0;
+                }
+            }
+            
+        };
+        sorter.setComparator(7, comparator);
         dataTable.setModel(gtm);
+        dataTable.setRowSorter(sorter);
         TableColumn tableColumnId = dataTable.getColumnModel().getColumn(0);
         tableColumnId.setMinWidth(0);
         tableColumnId.setMaxWidth(0);
