@@ -199,7 +199,6 @@ public class ModifyLinkPanel extends javax.swing.JPanel {
         linkService.updateLink(link);
         JOptionPane.showMessageDialog(this, "更新链接成功");
         GrabFrame frame = (GrabFrame) this.getParent().getParent().getParent().getParent();
-        frame.remove(this);
         LinkListPanel llp = new LinkListPanel(ctx);
         frame.replacePanle(llp);
     }//GEN-LAST:event_linkSaveActionPerformed

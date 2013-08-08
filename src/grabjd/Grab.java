@@ -46,7 +46,7 @@ public class Grab implements Runnable {
                     String costPriceStr = "";
                     String seckillPriceStr = "";
                     String url = link.getLinkUrl().trim();
-                    Document doc = Jsoup.connect(url).timeout(1000*30).get();
+                    Document doc = Jsoup.connect(url).timeout(1000 * 30).get();
                     String title = doc.select("#btAsinTitle").text().trim();
                     String salesTitle = "";
                     if (title.indexOf("减") != -1) {
@@ -56,14 +56,11 @@ public class Grab implements Runnable {
                             salesTitle = salesTitle + "," + matcher.group();
                         }
                     }
-                    String deliver = doc.select(".buying > b").text();
-                    if(!"亚马逊".equals(deliver)){
-                        costPrice = 0;
-                    }else{
-                        costPriceStr = doc.select(".priceLarge").text().trim();
-                        costPriceStr = costPriceStr.split("\\s{1,}")[1].replaceAll(",", "");
-                        costPrice = new BigDecimal(costPriceStr).multiply(new BigDecimal("100")).longValue();
-                    }  
+
+                    costPriceStr = doc.select(".priceLarge").text().trim();
+                    costPriceStr = costPriceStr.split("\\s{1,}")[1].replaceAll(",", "");
+                    costPrice = new BigDecimal(costPriceStr).multiply(new BigDecimal("100")).longValue();
+
                     Goods goods = goodsService.getGoods(title);
                     if (goods == null) {
                         goods = new Goods();
@@ -79,7 +76,7 @@ public class Grab implements Runnable {
                         goods.setDiffPrice(goods.getManualPrice() - discount_price);
                         goods.setLink(url);
                         goodsService.updateGoods(goods);
-                        if (goods.getDiffPrice() > 0 &&  CacheUtil.getCacheMap().get("setting")) {
+                        if (goods.getDiffPrice() > 0 && CacheUtil.getCacheMap().get("setting")) {
                             AudioPlayer.player.start(this.getClass().getResourceAsStream("/grabjd/sound/msg.wav"));
                         }
                     }

@@ -17,7 +17,7 @@ import org.jsoup.nodes.Document;
 public class Test {
     public static void main(String[] args){
         try {
-            String url = "http://www.amazon.cn/Apple-MD094CH-A-iMac-21-5%E8%8B%B1%E5%AF%B8%E4%B8%80%E4%BD%93%E6%9C%BA/dp/B009X6I1OY/ref=sr_1_2?s=pc&ie=UTF8&qid=1375096310&sr=1-2";
+            String url = "http://www.amazon.cn/SAMSUNG-%E4%B8%89%E6%98%9F-Galaxy-Premier-I9260-%E6%99%BA%E8%83%BD3G%E6%89%8B%E6%9C%BA/dp/B00AMV9ZFS/ref=sr_1_1?s=wireless&ie=UTF8&qid=1375354391&sr=1-1&keywords=%E4%B8%89%E6%98%9F9260";
             Document docu =  Jsoup.connect(url).get();
             System.out.println( docu.html());
         } catch (IOException ex) {
