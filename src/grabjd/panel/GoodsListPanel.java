@@ -79,9 +79,11 @@ public class GoodsListPanel extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e){
                 if(e.getClickCount() == 2){
-                    int clickRow = dataTable.rowAtPoint(e.getPoint());
+                    int clickRow = dataTable.getSelectedRow();
+                    System.out.println(clickRow);
                     GoodsTableModel goodsTableModel =(GoodsTableModel)dataTable.getModel();
-                    String link = goodsTableModel.getData().get(clickRow).getLink();
+                    int newRow = dataTable.convertRowIndexToModel(clickRow);
+                    String link = goodsTableModel.getData().get(newRow).getLink();
                     Desktop desktop = Desktop.getDesktop();
                     try {
                          desktop.browse(new URI(link));  
