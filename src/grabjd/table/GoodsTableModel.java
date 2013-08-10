@@ -17,7 +17,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  */
 public class GoodsTableModel extends AbstractTableModel {
 
-    private String[] columnNames = new String[]{"商品id","商品名称", "商品优惠", "网站价格", "秒杀价格", "折扣价格", "手动报价", "差价",""};
+    private String[] columnNames = new String[]{"商品id","商品名称", "商品优惠", "网站价格", "秒杀价格", "折扣价格", "手动报价", "差价"};
     private List<Goods> data;
 
     public GoodsTableModel(List<Goods> data) {

@@ -74,13 +74,12 @@ public class GoodsListPanel extends javax.swing.JPanel {
         tableColumnId.setPreferredWidth(0);
         dataTable.getColumnModel().getColumn(1).setPreferredWidth(400);
         dataTable.getColumnModel().getColumn(2).setPreferredWidth(300);
-        dataTable.getColumnModel().getColumn(8).setCellRenderer(new IconTableCellRenderer());
+        dataTable.getColumnModel().getColumn(1).setCellRenderer(new IconTableCellRenderer());
         dataTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e){
                 if(e.getClickCount() == 2){
                     int clickRow = dataTable.getSelectedRow();
-                    System.out.println(clickRow);
                     GoodsTableModel goodsTableModel =(GoodsTableModel)dataTable.getModel();
                     int newRow = dataTable.convertRowIndexToModel(clickRow);
                     String link = goodsTableModel.getData().get(newRow).getLink();

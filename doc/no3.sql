@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `g_goods` (
   `manual_price` bigint(20) NOT NULL DEFAULT '0',
   `diff_price` bigint(20) NOT NULL DEFAULT '0',
   `discount_rate`  bigint(20) NOT NULL DEFAULT '0',
+  `link_url`  bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `title` (`title`)
